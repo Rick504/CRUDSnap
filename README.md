@@ -11,7 +11,7 @@ Para acessar a rota /protegido precisa ser efetuado o login na rota /login, assi
     yarn build
 
 
-# DB CONTAINER ============================================
+# DB CONTAINER
 
 ### Construa a imagem do Docker usando o seguinte comando:
 
@@ -20,6 +20,10 @@ Para acessar a rota /protegido precisa ser efetuado o login na rota /login, assi
 ### Execute o seguinte comando para iniciar um novo container usando a imagem que acabou de criar:
 
     sudo docker run --name db -p 5432:5432 crudsnapdb
+
+`caso não executo na segunda vez execute:`
+
+    sudo docker run crudsnapdb
 
 ### Apagar containers
 
@@ -32,6 +36,11 @@ Para acessar a rota /protegido precisa ser efetuado o login na rota /login, assi
 ### Verificar Conteiners em execução
 
     sudo docker ps
+
+### Verificar status container
+
+    sudo docker ps -a
+
 
 ### Verificar containers criados
 
