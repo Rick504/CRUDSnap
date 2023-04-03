@@ -1,30 +1,25 @@
 import express, { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { verifyToken } from '../middlewares/verifyToken';
-import { getUsers } from '../models/userModel';
 
 const appRouter = express.Router();
 
 // GET ----------------------------------------------------------------------
-appRouter.get('/users', async (req: Request, res: Response) => {
-  const users = await getUsers();
-  return res.send(users);
-});
-
 appRouter.get('/', async (req: Request, res: Response) => {
   res.send('testando rota publica sem a necessidade de token');
 });
 
 appRouter.get('/protegido', verifyToken, (req: Request, res: Response) => {
   const user = req.body.user;
-  res.send(`Bem-vindo(a), ${user.username} (${user.email})!`);
+  res.send(`Bem-vindo(a), ${user.name} (${user.email})!`);
 });
 
 //POST ----------------------------------------------------------------------
+
 appRouter.post('/login', (req: Request, res: Response) => {
   const user = {
     id: 1,
-    username: 'usuario',
+    name: 'usuario',
     email: 'usuario@exemplo.com',
   };
 

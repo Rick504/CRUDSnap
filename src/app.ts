@@ -1,15 +1,18 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import appRouter from './routers/index';
 import cors from 'cors';
+
+// Routers
+import appRouter from './routers/index';
+import userRouter from './routers/userRouter';
 
 dotenv.config();
 const app = express();
-
 app.use(express.json());
-app.use(appRouter);
 
-// Cors - settings ---------------------------------------//
+app.use(appRouter);
+app.use(userRouter);
+
 app.use(
   cors({
     origin: '*',
