@@ -1,11 +1,17 @@
 import express, { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { verifyToken } from '../middlewares/verifyToken';
+import { getUsers } from '../models/userModel';
 
 const appRouter = express.Router();
 
 // GET ----------------------------------------------------------------------
-appRouter.get('/', (req: Request, res: Response) => {
+appRouter.get('/users', async (req: Request, res: Response) => {
+  const users = await getUsers();
+  return res.send(users);
+});
+
+appRouter.get('/', async (req: Request, res: Response) => {
   res.send('testando rota publica sem a necessidade de token');
 });
 

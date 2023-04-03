@@ -4,7 +4,7 @@ const pool = new Pool({
   user: 'postgres',
   password: '123',
   host: 'localhost',
-  database: 'mydatabase',
+  database: 'crudsnapdb',
   port: 5432,
 });
 
