@@ -15,21 +15,15 @@ Para acessar a rota /protegido precisa ser efetuado o login na rota /login, assi
 
 ### Construa a imagem do Docker usando o seguinte comando:
 
-    sudo docker build -t crudsnapdb .
+obs: entrar na pasta db_container e:
 
-### Execute o seguinte comando para iniciar um novo container usando a imagem que acabou de criar:
+   sudo docker compose up
 
-    sudo docker run --name db -p 5432:5432 crudsnapdb
+### Apagar todas as imagens
 
-`caso não executo na segunda vez execute:`
+    sudo docker rmi $(sudo docker images -a -q) -f
 
-    sudo docker run crudsnapdb
-
-### Apagar containers
-
-    sudo docker rmi <container-name> -f
-
-### Limpar rastros do container
+### Limpar rastros dos container e imagens
 
     sudo docker system prune
 
