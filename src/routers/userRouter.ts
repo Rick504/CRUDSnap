@@ -1,5 +1,10 @@
 import express, { Request, Response } from 'express';
-import { getUsers, insertUser, updateUser } from '../models/userModel';
+import {
+  deleteUser,
+  getUsers,
+  insertUser,
+  updateUser,
+} from '../models/userModel';
 
 const userRouter = express.Router();
 
@@ -17,8 +22,14 @@ userRouter.post('/insert/user', async (req: Request, res: Response) => {
 userRouter.put('/update/user/:id', async (req: Request, res: Response) => {
   const id = req.params.id;
   const { name, email, password } = req.body;
-  const user = await updateUser({ name, email, password }, id);
+  await updateUser({ name, email, password }, id);
   res.send('Usuário atualizado com sucesso !!');
+});
+
+userRouter.delete('/delete/user/:id', async (req: Request, res: Response) => {
+  const id = req.params.id;
+  await deleteUser(id);
+  res.send('Usuário deletado com sucesso !!');
 });
 
 export default userRouter;

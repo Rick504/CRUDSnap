@@ -48,3 +48,19 @@ export function updateUser(user: IUser, id: string) {
       throw err;
     });
 }
+
+export function deleteUser(id: string) {
+  const query = `
+    DELETE FROM users
+    WHERE id = $1;
+  `;
+  const values = [id];
+
+  return db
+    .query(query, values)
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.error('Erro ao deletar usuário:', err);
+      throw err;
+    });
+}
