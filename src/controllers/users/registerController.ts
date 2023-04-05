@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { insertUser } from '../models/userModel';
+import { insertUser } from '../../models/userModel';
 
 const registerController = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
