@@ -1,10 +1,6 @@
 import express, { Request, Response } from 'express';
-import {
-  deleteUser,
-  getUsers,
-  insertUser,
-  updateUser,
-} from '../models/userModel';
+import registerController from '../controllers/registerController';
+import { deleteUser, getUsers, updateUser } from '../models/userModel';
 
 const userRouter = express.Router();
 
@@ -13,11 +9,7 @@ userRouter.get('/users', async (req: Request, res: Response) => {
   return res.send(users);
 });
 
-userRouter.post('/insert/user', async (req: Request, res: Response) => {
-  const { name, email, password } = req.body;
-  const user = await insertUser({ name, email, password });
-  res.send(user);
-});
+userRouter.post('/register', registerController);
 
 userRouter.put('/update/user/:id', async (req: Request, res: Response) => {
   const id = req.params.id;
@@ -33,3 +25,6 @@ userRouter.delete('/delete/user/:id', async (req: Request, res: Response) => {
 });
 
 export default userRouter;
+function next() {
+  throw new Error('Function not implemented.');
+}

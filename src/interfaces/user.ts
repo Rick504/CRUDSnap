@@ -4,3 +4,9 @@ export interface IUser {
   email: string;
   password: string;
 }
+
+export interface IAuth {
+  name?: string;
+  email: string;
+  password: string;
+}

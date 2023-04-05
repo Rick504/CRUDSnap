@@ -1,5 +1,19 @@
 import db from '../../config/config_pg';
-import { IUser } from '../interfaces/user';
+import { IAuth, IUser } from '../interfaces/user';
+
+export function getUser(user: IAuth): Promise<any> {
+  const { email, password } = user;
+  const query = `SELECT * FROM users WHERE email = $1 AND password = $2;`;
+  const values = [email, password];
+
+  return db
+    .query(query, values)
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.error('Erro ao buscar usuários:', err);
+      throw err;
+    });
+}
 
 export function getUsers(): Promise<any> {
   return db
