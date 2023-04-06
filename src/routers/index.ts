@@ -5,7 +5,7 @@ const appRouter = express.Router();
 
 // GET ----------------------------------------------------------------------
 appRouter.get('/', async (req: Request, res: Response) => {
-  res.send('testando rota publica sem a necessidade de token');
+  res.json({ msg: 'testando rota publica sem a necessidade de token' });
 });
 
 //POST ----------------------------------------------------------------------

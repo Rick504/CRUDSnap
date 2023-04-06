@@ -9,7 +9,7 @@ const userRouter = express.Router();
 // TESTE
 userRouter.get('/users', async (req: Request, res: Response) => {
   const users = await getUsers();
-  return res.send(users);
+  return res.json(users);
 });
 
 userRouter.post('/register', registerController);
