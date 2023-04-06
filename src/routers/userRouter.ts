@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import deleteController from '../controllers/users/deleteController';
-import registerController from '../controllers/users/registerController';
+import registerController from '../controllers/users/insertController';
 import updateController from '../controllers/users/updateController';
 import { getUsers } from '../models/userModel';
 
