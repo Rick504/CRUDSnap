@@ -1,21 +1,8 @@
 import db from '../../config/config_pg';
-import { IAuth, IUser } from '../interfaces/user';
+import { IUser } from '../interfaces/user';
+import { v4 as uuidv4 } from 'uuid';
 
-export function getUser(user: IAuth): Promise<any> {
-  const { email, password } = user;
-  const query = `SELECT * FROM users WHERE email = $1 AND password = $2;`;
-  const values = [email, password];
-
-  return db
-    .query(query, values)
-    .then((res) => res.rows[0])
-    .catch((err) => {
-      console.error('Erro ao buscar usuários:', err);
-      throw err;
-    });
-}
-
-export function getUsers(): Promise<any> {
+export function getUsers(): Promise<Object[]> {
   return db
     .query('SELECT * FROM users')
     .then((res) => res.rows)
@@ -26,13 +13,14 @@ export function getUsers(): Promise<any> {
 }
 
 export function insertUser(user: IUser) {
+  const id = uuidv4();
   const { name, email, password } = user;
   const query = `
-    INSERT INTO users (name, email, password)
-    VALUES ($1, $2, $3)
+    INSERT INTO users (id, name, email, password)
+    VALUES ($1, $2, $3, $4)
     RETURNING *
   `;
-  const values = [name, email, password];
+  const values = [id, name, email, password];
 
   return db
     .query(query, values)

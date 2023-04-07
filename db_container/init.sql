@@ -1,5 +1,5 @@
 CREATE TABLE "users" (
-    id SERIAL PRIMARY KEY,
+    id CHAR(36) DEFAULT NULL PRIMARY KEY,
     "name" VARCHAR(45) NOT NULL,
     "email" VARCHAR(50) UNIQUE NOT NULL,
     "password" VARCHAR(150) NOT NULL,
