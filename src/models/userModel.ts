@@ -1,6 +1,19 @@
 import db from '../../config/config_pg';
-import { IUser } from '../interfaces/user';
+import { IUser, IAuth } from '../interfaces/user';
 import { v4 as uuidv4 } from 'uuid';
+
+export function authUserLogin(user: IAuth) {
+  const { email, password } = user;
+  const query = `SELECT * FROM users WHERE email = $1 AND password = $2;`;
+  const values = [email, password];
+
+  return db
+    .query(query, values)
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      throw new Error(`Erro ao autenticar usuário: ${err.message}`);
+    });
+}
 
 export function getUsers(): Promise<Object[]> {
   return db
