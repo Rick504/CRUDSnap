@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { setToken } from '../../security/auth';
+import { setToken } from '../../security/token';
 import { insertUser } from '../../models/userModel';
 
 const registerController = async (req: Request, res: Response) => {

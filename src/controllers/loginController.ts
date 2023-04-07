@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { setToken } from '../security/auth';
+import { setToken } from '../security/token';
 import { authUserLogin } from '../models/userModel';
 
 const loginController = async (req: Request, res: Response) => {
