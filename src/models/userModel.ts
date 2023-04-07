@@ -15,6 +15,19 @@ export function authUserLogin(user: IAuth) {
     });
 }
 
+export function getUserById(id: string) {
+  const query = `SELECT * FROM users WHERE id = $1;`;
+  const values = [id];
+
+  return db
+    .query(query, values)
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.error('Erro ao buscar usuário por ID:', err);
+      throw err;
+    });
+}
+
 export function getUsers(): Promise<Object[]> {
   return db
     .query('SELECT * FROM users')
