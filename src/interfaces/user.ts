@@ -1,12 +1,13 @@
-export interface IUser {
-  id?: string;
-  name: string;
+interface IEmailPassword {
   email: string;
   password: string;
 }
 
-export interface IAuth {
+export interface IUser extends IEmailPassword {
+  id?: string;
+  name: string;
+}
+
+export interface IAuth extends IEmailPassword {
   name?: string;
-  email: string;
-  password: string;
 }
