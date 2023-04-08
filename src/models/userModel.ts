@@ -1,6 +1,19 @@
 import db from '../../config/config_pg';
 import { IUser, IAuth } from '../interfaces/user';
 import { v4 as uuidv4 } from 'uuid';
+import bcrypt from 'bcrypt';
+
+export function getUserByEmail(email: string) {
+  const query = `SELECT * FROM users WHERE email = $1`;
+  const values = [email];
+
+  return db
+    .query(query, values)
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      throw new Error(`Erro ao autenticar usuário: ${err.message}`);
+    });
+}
 
 export function authUserLogin(user: IAuth) {
   const { email, password } = user;
@@ -38,15 +51,16 @@ export function getUsers(): Promise<Object[]> {
     });
 }
 
-export function insertUser(user: IUser) {
+export async function insertUser(user: IUser) {
   const id = uuidv4();
   const { name, email, password } = user;
+  const hashPassword = await bcrypt.hash(password, 10);
   const query = `
     INSERT INTO users (id, name, email, password)
     VALUES ($1, $2, $3, $4)
     RETURNING *
   `;
-  const values = [id, name, email, password];
+  const values = [id, name, email, hashPassword];
 
   return db
     .query(query, values)
