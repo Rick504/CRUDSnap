@@ -24,6 +24,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.13",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/pg": "^8.6.6",
