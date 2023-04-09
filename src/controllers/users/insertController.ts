@@ -22,9 +22,10 @@ const registerController = async (req: Request, res: Response) => {
 
     const token = await setToken(userDataJWT);
 
-    res.json({ email: email, auth: true, token });
+    res.status(201).json({ email: email, auth: true, token });
   } catch (err) {
-    res.json('Erro ao tentar cadastrar usuário.');
+    console.log('Erro ao tentar cadastrar usuário.', err);
+    res.status(400).json('Erro ao tentar cadastrar usuário.');
   }
 };
 export default registerController;

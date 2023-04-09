@@ -12,9 +12,10 @@ const updateController = async (req: Request, res: Response) => {
     }
 
     await updateUser({ name, email, password }, id);
-    res.json('Usuário atualizado com sucesso !!');
+    res.status(200).json('Usuário atualizado com sucesso !!');
   } catch (err) {
-    res.json('Erro ao tentar atualizar conta.');
+    console.log('Erro ao tentar atualizar conta.', err);
+    res.status(409).json('Erro ao tentar atualizar conta.');
   }
 };
 export default updateController;

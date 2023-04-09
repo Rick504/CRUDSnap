@@ -29,12 +29,12 @@ const loginController = async (req: Request, res: Response) => {
       const { email } = user;
       const token = await setToken(user);
 
-      res.json({ email, auth: true, token });
+      res.status(200).json({ email, auth: true, token });
     } else {
       res.status(401).json('Usuario e senha incorretos.');
     }
   } catch (err) {
-    res.json('Erro ao tentar efetuar o login.');
+    res.status(403).json('Erro ao tentar efetuar o login.');
   }
 };
 export default loginController;
