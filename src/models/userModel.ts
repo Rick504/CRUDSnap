@@ -1,5 +1,5 @@
 import db from '../../config/config_pg';
-import { IUser, IAuth } from '../interfaces/user';
+import { IUser } from '../interfaces/user';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
 
@@ -15,7 +15,7 @@ export function getUserByEmail(email: string) {
     });
 }
 
-export function authUserLogin(user: IAuth) {
+export function authUserLogin(user: IUser) {
   const { email, password } = user;
   const query = `SELECT * FROM users WHERE email = $1 AND password = $2;`;
   const values = [email, password];

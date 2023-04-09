@@ -31,7 +31,7 @@ const loginController = async (req: Request, res: Response) => {
 
       res.json({ email, auth: true, token });
     } else {
-      res.json('Usuario e senha incorretos.');
+      res.status(401).json('Usuario e senha incorretos.');
     }
   } catch (err) {
     res.json('Erro ao tentar efetuar o login.');

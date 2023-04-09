@@ -76,7 +76,7 @@ type: object
 
 Email ou senha incorretas:
 
-status: `200`
+status: `401`
 
 Saida:
 

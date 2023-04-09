@@ -1,11 +1,18 @@
 import { Request, Response } from 'express';
 import { setToken } from '../../security/token';
 import { insertUser } from '../../models/userModel';
+import { IUser } from '../../interfaces/user';
 
 const registerController = async (req: Request, res: Response) => {
   try {
     const { name, email, password } = req.body;
-    const userDd = await insertUser({ name, email, password });
+
+    const user: IUser = {
+      name,
+      email,
+      password,
+    };
+    const userDd = await insertUser(user);
 
     const userDataJWT = {
       id: userDd.id,
