@@ -7,7 +7,7 @@ const deleteController = async (req: Request, res: Response) => {
     await deleteUser(id);
     res.json('Usuário deletado com sucesso !!');
   } catch (err) {
-    res.json('Erro ao tentar deletar conta.');
+    res.status(404).json('Erro ao tentar deletar conta.');
   }
 };
 export default deleteController;

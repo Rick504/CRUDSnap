@@ -91,18 +91,32 @@ export function updateUser(user: IUser, id: string) {
     });
 }
 
-export function deleteUser(id: string) {
-  const query = `
-    DELETE FROM users
+export async function deleteUser(id: string) {
+  // Consulta para verificar se o id existe
+  const selectQuery = `
+    SELECT *
+    FROM users
     WHERE id = $1;
   `;
-  const values = [id];
 
-  return db
-    .query(query, values)
-    .then((res) => res.rows[0])
-    .catch((err) => {
-      console.error('Erro ao deletar usuário:', err);
-      throw err;
-    });
+  try {
+    const selectResult = await db.query(selectQuery, [id]);
+
+    if (selectResult.rows.length === 0) {
+      throw new Error('O id informado não existe no banco');
+    }
+
+    // Se o id existe, executar a exclusão
+    const deleteQuery = `
+      DELETE FROM users
+      WHERE id = $1;
+    `;
+    const deleteValues = [id];
+
+    const deleteResult = await db.query(deleteQuery, deleteValues);
+    return deleteResult.rows[0];
+  } catch (err) {
+    console.error('Erro ao deletar usuário:', err);
+    throw err;
+  }
 }

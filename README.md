@@ -196,9 +196,7 @@ status: `404`
 
 Saida:
 
-type: object
+type: string
 ```
-{
-	"msgError": "Usuário não encontrado"
-}
+"Erro ao tentar deletar conta"
 ```
