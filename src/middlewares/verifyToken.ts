@@ -13,7 +13,7 @@ export function verifyToken(req: Request, res: Response, next: NextFunction) {
   jwt.verify(token, jwtSecret, (err: any, decoded: any) => {
     if (err) {
       console.log(err);
-      res.status(401).send('Token inválido.');
+      res.status(401).json('Token inválido.');
       return;
     }
 

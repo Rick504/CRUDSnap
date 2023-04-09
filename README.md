@@ -40,6 +40,11 @@ obs: entrar na pasta db_container e:
 
     sudo docker images
 
+# Forneça o Token
+
+Algumas rota serão necessarias fornecer o token para executar alguma ação, passando no header da requisição:
+
+* x-access-token: valueToken
 
 # Documentação da API
 
@@ -59,8 +64,6 @@ Enviar no corpo da requisição:
 }
 ```
 
-status: `200`
-
 Saida:
 
 type: object
@@ -75,8 +78,6 @@ type: object
 
 
 Email ou senha incorretas:
-
-status: `401`
 
 Saida:
 
@@ -102,8 +103,6 @@ Enviar no corpo da requisição:
 }
 ```
 
-status: `200`
-
 Saida:
 
 type: object
@@ -118,8 +117,6 @@ type: object
 
 
 Enviar campos a menos:
-
-status: `200`
 
 Saida:
 
@@ -145,8 +142,6 @@ Enviar no corpo da requisição:
 }
 ```
 
-status: `200`
-
 Saida:
 
 type: string
@@ -157,8 +152,6 @@ type: string
 
 
 Erro ao encontrar usuário:
-
-status: `404`
 
 Saida:
 
@@ -179,8 +172,6 @@ Parâmetros de consulta: UUID, tipp string.
 
 Enviar no corpo da requisição: Nada.
 
-status: `200`
-
 Saida:
 
 type: string
@@ -191,8 +182,6 @@ type: string
 
 
 Erro ao encontrar usuário:
-
-status: `404`
 
 Saida:
 
