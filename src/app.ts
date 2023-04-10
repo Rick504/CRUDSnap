@@ -10,15 +10,21 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, x-access-token'
+  );
+  next();
+});
+
 app.use(appRouter);
 app.use(userRouter);
 
 app.use(
   cors({
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
+    origin: 'http://localhost:5173', // Permite apenas o acesso da origem http://localhost:5173
   })
 );
 
