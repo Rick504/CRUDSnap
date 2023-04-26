@@ -14,9 +14,9 @@ userRouter.get('/users', async (req: Request, res: Response) => {
   return res.json(users);
 });
 
-userRouter.get('/user/:id', readController);
+userRouter.get('/user/', readController);
 userRouter.post('/register', registerController);
-userRouter.put('/update/user/:id', verifyToken, updateController);
-userRouter.delete('/delete/user/:id', verifyToken, deleteController);
+userRouter.put('/update/user/', verifyToken, updateController);
+userRouter.delete('/delete/user/', verifyToken, deleteController);
 
 export default userRouter;
