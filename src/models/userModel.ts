@@ -86,8 +86,10 @@ export async function insertUser(user: IUser) {
     });
 }
 
-export function updateUser(user: IUser, id: string) {
+export async function updateUser(user: IUser, id: string) {
   const { name, email, password } = user;
+
+  const hashPassword = await bcrypt.hash(password, 10);
   const query = `
     UPDATE users
     SET name = $1,
@@ -95,7 +97,7 @@ export function updateUser(user: IUser, id: string) {
         password = $3
     WHERE id = $4;
   `;
-  const values = [name, email, password, id];
+  const values = [name, email, hashPassword, id];
 
   return db
     .query(query, values)
