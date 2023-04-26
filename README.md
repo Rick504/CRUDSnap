@@ -40,13 +40,17 @@ obs: entrar na pasta db_container e:
 
     sudo docker images
 
-# Forneça o Token
+## Forneça o Token
 
 Algumas rota serão necessarias fornecer o token para executar alguma ação, passando no header da requisição:
 
 * x-access-token: valueToken
 
+---
+
 # Documentação da API
+
+***Todas as rotas documentadas:***
 
 ###  Endpoint: /login
 
@@ -89,9 +93,7 @@ type: string
 ###  Endpoint: /register
 
 method: POST
-
 Descrição: Registra um usuário.
-
 Parâmetros de consulta: Nenhum.
 
 Enviar no corpo da requisição:
@@ -104,7 +106,6 @@ Enviar no corpo da requisição:
 ```
 
 Saida:
-
 type: object
 
 ```
@@ -117,20 +118,45 @@ type: object
 
 
 Enviar campos a menos:
-
 Saida:
-
 type: string
 ```
 "Erro ao tentar cadastrar usuário."
 ```
 
+###  Endpoint: /user/:id
+
+method: GET
+Descrição: Pega informações de um usuário.
+Parâmetros de consulta: UUID, tipp string.
+
+Saida:
+type: Objeto
+
+```
+{
+	"id": "f4238677-c15b-46ba-99f3-99b07ea96087",
+	"name": "jonas4",
+	"email": "jonas@teste4",
+	"password": "1234",
+	"created_at": "2023-04-09T02:33:09.416Z",
+	"updated_at": "2023-04-09T02:33:09.416Z"
+}
+```
+
+
+Erro ao encontrar usuário:
+Saida:
+
+type: string
+```
+'Erro ao tentar encontrar Usuário.'
+```
+
 ###  Endpoint: /update/user/:id
 
 method: PUT
-
 Descrição: Atualiza um usuário.
-
 Parâmetros de consulta: UUID, tipp string.
 
 Enviar no corpo da requisição:
@@ -143,7 +169,6 @@ Enviar no corpo da requisição:
 ```
 
 Saida:
-
 type: string
 
 ```
@@ -152,7 +177,6 @@ type: string
 
 
 Erro ao encontrar usuário:
-
 Saida:
 
 type: object
@@ -165,24 +189,18 @@ type: object
 ###  Endpoint: /delete/user/:id
 
 method: DELETE
-
 Descrição: Deleta um usuário.
-
 Parâmetros de consulta: UUID, tipp string.
-
 Enviar no corpo da requisição: Nada.
 
 Saida:
-
 type: string
 
 ```
 "Usuário deletado com sucesso !!"
 ```
 
-
 Erro ao encontrar usuário:
-
 Saida:
 
 type: string
